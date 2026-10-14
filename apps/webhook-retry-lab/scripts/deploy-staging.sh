@@ -31,7 +31,7 @@ wrangler d1 list --json > /tmp/dw-staging-d1-list.json
 DB_ID="$(find_db_id /tmp/dw-staging-d1-list.json)"
 if [[ -z "$DB_ID" ]]; then
   echo "Creating isolated staging-only D1: $DB_NAME"
-  wrangler d1 create "$DB_NAME" --location apac
+  wrangler d1 create "$DB_NAME"
   wrangler d1 list --json > /tmp/dw-staging-d1-list.json
   DB_ID="$(find_db_id /tmp/dw-staging-d1-list.json)"
 fi
