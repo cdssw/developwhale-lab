@@ -16,4 +16,3 @@ jobs:
           node-version: '22'
       - name: Check original site HTTP response
         run: node scripts/check-public.mjs
-
