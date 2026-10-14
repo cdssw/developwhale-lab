@@ -13,3 +13,6 @@
 
 # Generated staging configuration (contains isolated Cloudflare D1 identifiers)
 **/wrangler.staging.generated.json
+
+# Generated per-account public Worker binding (never commit actual D1 resource identifiers)
+**/wrangler.public.generated.json
