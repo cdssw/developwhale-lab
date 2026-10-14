@@ -1,0 +1,18 @@
+name: Manual public HTTP smoke check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  http-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check original site HTTP response
+        run: node scripts/check-public.mjs
