@@ -1,0 +1,57 @@
+name: Webhook Retry Lab - manual Cloudflare staging
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: "Type DEPLOY_STAGING to permit creating an isolated staging Worker and D1"
+        required: true
+        type: string
+      billing_confirmation:
+        description: "Type FREE_TIER_CONFIRMED after checking selected Cloudflare account plan"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: webhook-retry-lab-cloudflare-staging
+  cancel-in-progress: false
+
+jobs:
+  staging:
+    if: ${{ inputs.confirmation == 'DEPLOY_STAGING' && inputs.billing_confirmation == 'FREE_TIER_CONFIRMED' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out the approved repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: apps/webhook-retry-lab/package-lock.json
+      - name: Install original pinned development dependencies
+        working-directory: apps/webhook-retry-lab
+        run: npm ci
+      - name: Verify original tests and build before any Cloudflare access
+        working-directory: apps/webhook-retry-lab
+        run: |
+          npm test
+          cp .openai/hosting.example.json .openai/hosting.json
+          npm run build
+          node scripts/validate-artifact.mjs
+          git diff --exit-code -- worker/index.js
+          node --check staging-worker.mjs
+      - name: Install Wrangler CLI before injecting credentials
+        run: npm install --global wrangler@4.136.3
+      - name: Isolated staging D1 initialization, migration and Worker deployment
+        working-directory: apps/webhook-retry-lab
+        env:
+          DEPLOY_CONFIRMATION: ${{ inputs.confirmation }}
+          FREE_TIER_CONFIRMATION: ${{ inputs.billing_confirmation }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: bash scripts/deploy-staging.sh
