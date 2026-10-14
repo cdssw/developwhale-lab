@@ -10,3 +10,6 @@
 **/*.db
 **/*.pem
 **/*.key
+
+# Generated staging configuration (contains isolated Cloudflare D1 identifiers)
+**/wrangler.staging.generated.json
