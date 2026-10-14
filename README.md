@@ -7,7 +7,7 @@ A separate, **zero-additional-spend** experiment repository for the DevelopWhale
 - Existing introduction: https://www.developwhale.com/webhook-retry-lab-test-duplicate-and-lost-events/
 - [Source handoff and validation gates](docs/SOURCE_HANDOFF.md)
 
-**Status:** GitHub integration read/write verified. The original tool's source code **has not yet been imported**. No GitHub-hosted replacement has been deployed.
+**Status:** Original Sites version 3 source is preserved in [apps/webhook-retry-lab](apps/webhook-retry-lab). No GitHub-hosted replacement has been deployed. See [provenance and runtime assessment](docs/SOURCE_PROVENANCE.md) and the [file inventory](docs/SOURCE_INVENTORY.json).
 
 ## Read-only monitoring
 - [Public HTTP smoke check](scripts/check-public.mjs)
@@ -16,7 +16,23 @@ A separate, **zero-additional-spend** experiment repository for the DevelopWhale
 The workflow is intentionally **manual only**. It makes an external HTTP request to the reported original tool without credentials or mutations. HTTP PASS is **not** proof that the interactive tool works for anonymous users. A runner access failure may reflect automation/bot restrictions rather than universal downtime.
 
 ## Next step
-Retrieve the original source via an officially supported Work/Sites export or authorized source connection. Assess actual runtime requirements before choosing static GitHub Pages or another approved deployment method. Then run functional, anonymous-browser, analytics, and download QA separately.
+The original source has been retrieved through the official Sites source helper. Full functionality includes a Worker API and D1 aggregate storage, so static GitHub Pages alone cannot preserve all existing functionality. Future hosting or deployment requires a separate authorized task. Anonymous-browser, analytics, download, acquisition, and billing QA remain separate gates.
 
 ## Safety
 No new spending, new product launch, credential commits, unsolicited outreach, or changes to existing WordPress, n8n, or scheduled jobs.
+
+
+## Run the imported original locally
+
+```sh
+cd apps/webhook-retry-lab
+npm ci
+cp .openai/hosting.example.json .openai/hosting.json
+npm test
+npm run build
+node scripts/validate-artifact.mjs
+```
+
+The example hosting file contains only logical bindings and **no live project identity**. It is sufficient for the local build and artifact validator; it is not a deployable production configuration. Do not add the old project's identity or deploy without new authorization. Tests/build use Node and Bash; Drizzle is needed only for `npm run db:generate`. The import was validated with Node 24.19.0. No runtime npm dependencies are declared.
+
+The original app README is copied unchanged as provenance and may contain historical operational instructions. Current limits in this repository and Issue #1 take precedence: source preservation only, no deployment or operator activation.

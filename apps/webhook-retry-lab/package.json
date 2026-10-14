@@ -1,0 +1,13 @@
+{
+  "name": "developwhale-webhook-retry-lab",
+  "private": true,
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "build": "node scripts/embed.mjs && bash scripts/build.sh",
+    "test": "node test.cjs && node test-worker.mjs"
+  },
+  "devDependencies": {
+    "drizzle-kit": "0.31.10",
+    "drizzle-orm": "0.45.2"
+  }
+}
