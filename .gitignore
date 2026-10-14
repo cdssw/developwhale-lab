@@ -1,0 +1,12 @@
+# Public source preservation: never commit runtime credentials/data.
+**/node_modules/
+**/.env
+**/.env.*
+**/.openai/local/
+**/.openai/hosting.json
+**/.wrangler/
+**/*.sqlite
+**/*.sqlite3
+**/*.db
+**/*.pem
+**/*.key

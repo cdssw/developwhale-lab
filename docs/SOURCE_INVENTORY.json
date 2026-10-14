@@ -1,0 +1,214 @@
+{
+  "source_commit": "6d3bce323589353c84ac3dea53f92d5142cb79cd",
+  "site_version": 3,
+  "files": [
+    {
+      "source_path": ".gitignore",
+      "sha256": "488678b27e4a41d56571a32e60228d60cb095cbe43658ab18dbde27aa4131055",
+      "bytes": 29,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/.gitignore"
+    },
+    {
+      "source_path": ".openai/hosting.json",
+      "sha256": "5fad648f78a6ad92b871f05fc13f2ade4b22cd8d406063feebadc2c414a96691",
+      "bytes": 91,
+      "git_mode": "100644",
+      "status": "omitted",
+      "reason": "Live Sites project identity; logical DB binding documented separately. No secret values found."
+    },
+    {
+      "source_path": "README.md",
+      "sha256": "eb077c162ae1b582fe6a449f4c586c5261c8a03f9af4487735d7bab28b364c50",
+      "bytes": 3286,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/README.md"
+    },
+    {
+      "source_path": "db/schema.ts",
+      "sha256": "8d46b6dda5c7c0ac683cdd82a873824652e51f71ecc1b6c6d55311832fce6f70",
+      "bytes": 366,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/db/schema.ts"
+    },
+    {
+      "source_path": "dist/.openai/hosting.json",
+      "sha256": "5fad648f78a6ad92b871f05fc13f2ade4b22cd8d406063feebadc2c414a96691",
+      "bytes": 91,
+      "git_mode": "100644",
+      "status": "omitted",
+      "reason": "Live Sites project identity; logical DB binding documented separately. No secret values found."
+    },
+    {
+      "source_path": "dist/server/index.js",
+      "sha256": "f01d528814d8c8c2e2211a3dfdd5ea4b01dfa5af0c5fdf8f162c3ea8675f287c",
+      "bytes": 25056,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/dist/server/index.js"
+    },
+    {
+      "source_path": "drizzle.config.ts",
+      "sha256": "3c0aceaa1e76cafa2f5c15627ba2ce46078defb24797f866dcad4fa7b8849bd9",
+      "bytes": 137,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/drizzle.config.ts"
+    },
+    {
+      "source_path": "drizzle/0000_open_iron_lad.sql",
+      "sha256": "4e926c7fe6c60b5c053e0a0eeb801e2cd4e14d11c0c15be2fa7e050e50a1e3b1",
+      "bytes": 220,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/drizzle/0000_open_iron_lad.sql"
+    },
+    {
+      "source_path": "drizzle/meta/0000_snapshot.json",
+      "sha256": "074940d51e7b3ffad251d3f8330f7726fbc3cabc872bac11e11f648ab012c56d",
+      "bytes": 1689,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/drizzle/meta/0000_snapshot.json"
+    },
+    {
+      "source_path": "drizzle/meta/_journal.json",
+      "sha256": "2d66503253593f94b05686e823f7b95bd62068a7f748d712e10c453121149c37",
+      "bytes": 203,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/drizzle/meta/_journal.json"
+    },
+    {
+      "source_path": "package-lock.json",
+      "sha256": "4f740e867dc41a7026365ad3fed0c47c3d6a92db58627633db826c9a4211edd9",
+      "bytes": 50412,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/package-lock.json"
+    },
+    {
+      "source_path": "package.json",
+      "sha256": "8460a957d712a150acb0d700c556adc308ad47ebce026dcd1226a7bcce6e41e8",
+      "bytes": 331,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/package.json"
+    },
+    {
+      "source_path": "scripts/build.sh",
+      "sha256": "76bddebeb2accb38b37de0673778d7bf3119bc7da7ed5ae4c1d4c9884969848f",
+      "bytes": 366,
+      "git_mode": "100755",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/scripts/build.sh"
+    },
+    {
+      "source_path": "scripts/embed.mjs",
+      "sha256": "1c102e3c671d47591f645e5c80bddc6fe6e0d1997b050c62730fd701065f8628",
+      "bytes": 638,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/scripts/embed.mjs"
+    },
+    {
+      "source_path": "scripts/validate-artifact.mjs",
+      "sha256": "39d9df53ac2461962466d5965c5f4d06f08024ceca40605952d8b753b88d41fd",
+      "bytes": 953,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/scripts/validate-artifact.mjs"
+    },
+    {
+      "source_path": "test-worker.mjs",
+      "sha256": "dc9f0f2b931bf3494d9d152ea1ca15445c709cf17eb3ab14060b0239ae02400e",
+      "bytes": 2022,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/test-worker.mjs"
+    },
+    {
+      "source_path": "test.cjs",
+      "sha256": "06a3c8696b543dd35ae7b5c01c3c413fcc5250c13859958d77a4bdabdeba4019",
+      "bytes": 1405,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/test.cjs"
+    },
+    {
+      "source_path": "web/app.js",
+      "sha256": "1f00dc0cdce47d781ade637296555cf627c432413d9f40548f2d772da90332e3",
+      "bytes": 3276,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/web/app.js"
+    },
+    {
+      "source_path": "web/core.js",
+      "sha256": "7c9edc4890c26fe836cfaebc469376e28e99f77dea1f523c411cea47dce3a0c8",
+      "bytes": 2453,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/web/core.js"
+    },
+    {
+      "source_path": "web/index.html",
+      "sha256": "234ae6f5ec0c01a4c00398449e7773d435d1634794281d897530e152538f93d2",
+      "bytes": 7474,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/web/index.html"
+    },
+    {
+      "source_path": "web/robots.txt",
+      "sha256": "b1a9a54f530e77a8974c209e4fa52aee4dfe9213a35bfd9857667920d690230f",
+      "bytes": 112,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/web/robots.txt"
+    },
+    {
+      "source_path": "web/sitemap.xml",
+      "sha256": "eae9159ed11d50e7b3216a6b812560e58ddcd8dbf7aa0c9eedd127bcccc6ca7c",
+      "bytes": 197,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/web/sitemap.xml"
+    },
+    {
+      "source_path": "web/style.css",
+      "sha256": "c9b5bb9331207a83f8a17ea3a48b8a3e4b9790f0bd93c6466a10107a23a0d4ec",
+      "bytes": 5330,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/web/style.css"
+    },
+    {
+      "source_path": "web/telemetry.js",
+      "sha256": "8de0ef47c8c7dd25d1d3ab0a37496408af470cbf57e406247424acc5b9eb308b",
+      "bytes": 2212,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/web/telemetry.js"
+    },
+    {
+      "source_path": "worker/index.js",
+      "sha256": "f01d528814d8c8c2e2211a3dfdd5ea4b01dfa5af0c5fdf8f162c3ea8675f287c",
+      "bytes": 25056,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/worker/index.js"
+    },
+    {
+      "source_path": "worker/runtime.js",
+      "sha256": "762cd290e6c2d4b210451228c8a1b229e5542d5bff21a75d3f4bdc186b31d76c",
+      "bytes": 3271,
+      "git_mode": "100644",
+      "status": "copied",
+      "destination_path": "apps/webhook-retry-lab/worker/runtime.js"
+    }
+  ]
+}

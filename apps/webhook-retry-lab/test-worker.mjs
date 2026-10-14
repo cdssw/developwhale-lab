@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
+const code=await readFile('worker/index.js','utf8');const {default:app}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+const origin='https://test.example';const calls=[];const DB={prepare(sql){const query={bind(...args){calls.push({sql,args});return query},async run(){return {success:true}},async all(){return {results:[]}}};return query;}};
+const event={event:'run',source:'direct',audience:'qa'};
+const req=(body,headers={},method='POST')=>new Request(origin+'/api/events',{method,headers:{Origin:origin,'Content-Type':'application/json',...headers},...(method==='POST'?{body:JSON.stringify(body)}:{})});
+assert.equal((await app.fetch(req(event),{DB})).status,200);assert.equal(calls.length,1);assert.deepEqual(calls[0].args.slice(1),['qa','direct','run']);
+for(const body of [{...event,email:'secret'},{...event,event:'garbage'},{...event,source:'https://private.test'},{...event,audience:'owner'},null])assert.equal((await app.fetch(req(body),{DB})).status,400);
+assert.equal((await app.fetch(req(event,{Origin:'https://elsewhere.test'}),{DB})).status,403);
+assert.equal((await app.fetch(req(event,{'Content-Type':'text/plain'}),{DB})).status,415);
+assert.equal((await app.fetch(req({x:'a'.repeat(257)}),{DB})).status,413);
+assert.equal((await app.fetch(req(event),{})).status,503);
+const metric=await app.fetch(new Request(origin+'/api/metrics'),{DB});assert.equal(metric.status,200);assert.equal((await metric.json()).rows.length,0);
+for(const file of ['/','/style.css','/app.js','/core.js','/telemetry.js','/robots.txt','/sitemap.xml'])assert.equal((await app.fetch(new Request(origin+file),{})).status,200);
+assert.equal((await app.fetch(new Request(origin+'/missing'),{})).status,404);
+assert.equal((await app.fetch(new Request(origin+'/',{method:'DELETE'}),{})).status,405);
+console.log('PASS: aggregate schema/origin/body/method validation, D1 failure isolation, metrics read, all assets');
