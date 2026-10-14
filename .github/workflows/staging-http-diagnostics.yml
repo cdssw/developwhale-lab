@@ -1,0 +1,41 @@
+name: Staging endpoint read-only diagnostics
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - '.github/workflows/staging-http-diagnostics.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  endpoint-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify staging HTTP status without credentials or writes
+        shell: bash
+        run: |
+          set -u
+          url="https://dw-webhook-retry-lab-staging.cdssw.workers.dev"
+          echo "DNS resolution:"
+          getent ahostsv4 dw-webhook-retry-lab-staging.cdssw.workers.dev | head -n 3 || true
+          for n in 1 2 3; do
+            printf '\n=== Attempt %s ===\n' "$n"
+            curl --silent --show-error --location --max-time 15 \
+              --dump-header /tmp/dw-probe-headers --output /tmp/dw-probe-body \
+              --write-out 'http_code=%{http_code} remote_ip=%{remote_ip} url_effective=%{url_effective}\n' \
+              "$url/" || echo "curl-exit=$?"
+            echo "Selected HTTP response headers:"
+            grep -Ei '^(HTTP/|server:|cf-ray:|content-type:|x-robots-tag:|location:|cf-cache-status:)' /tmp/dw-probe-headers || true
+            echo "First 500 bytes of response body (public landing page or error only):"
+            head -c 500 /tmp/dw-probe-body || true
+            printf '\n'
+            [[ "$n" == 3 ]] || sleep 8
+          done
+          echo "=== Metrics read-only endpoint ==="
+          curl --silent --show-error --location --max-time 15 \
+            --output /tmp/dw-probe-metrics \
+            --write-out 'http_code=%{http_code}\n' "$url/api/metrics" || echo "curl-exit=$?"
+          head -c 500 /tmp/dw-probe-metrics || true
+          echo
+          echo "Diagnostics only: this job never deploys, authenticates, or writes to staging."
