@@ -46,7 +46,7 @@ jobs:
           git diff --exit-code -- worker/index.js
           node --check staging-worker.mjs
       - name: Install Wrangler CLI before injecting credentials
-        run: npm install --global wrangler@4.136.3
+        run: npm install --global wrangler@4
       - name: Isolated staging D1 initialization, migration and Worker deployment
         working-directory: apps/webhook-retry-lab
         env:
