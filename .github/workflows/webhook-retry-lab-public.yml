@@ -1,0 +1,60 @@
+name: Webhook Retry Lab - isolated public release
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'apps/webhook-retry-lab/RELEASE_PUBLIC_20261015.md'
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'Type PUBLIC_RELEASE_20261015 to redeploy isolated public Worker'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: webhook-retry-lab-public-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: ${{ github.event_name == 'push' || inputs.confirmation == 'PUBLIC_RELEASE_20261015' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: apps/webhook-retry-lab/package-lock.json
+      - name: Verify imported original tests and rebuild before Cloudflare
+        working-directory: apps/webhook-retry-lab
+        run: |
+          npm ci
+          npm test
+          cp .openai/hosting.example.json .openai/hosting.json
+          npm run build
+          node scripts/validate-artifact.mjs
+          node --check public-worker.mjs
+          git diff --exit-code -- worker/index.js
+      - name: Install verified Wrangler major and browser QA tool
+        run: |
+          npm install --global wrangler@4.151.0
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Deploy separate Worker and separate D1, verify SEO + HTTP
+        working-directory: apps/webhook-retry-lab
+        env:
+          PUBLIC_RELEASE_CONFIRMED: PUBLIC_RELEASE_20261015
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: bash scripts/deploy-public.sh
+      - name: Anonymous Chromium functional QA with only qa telemetry
+        env:
+          LAB_QA_BASE_URL: ${{ env.PUBLIC_URL }}
+          LAB_EXPECT_NOINDEX: '0'
+        run: node scripts/qa-staging.mjs
