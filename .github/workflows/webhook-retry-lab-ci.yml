@@ -1,0 +1,51 @@
+name: Webhook Retry Lab - source CI
+
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - 'apps/webhook-retry-lab/**'
+      - '.github/workflows/webhook-retry-lab-ci.yml'
+  push:
+    branches: [import/original-webhook-retry-lab-v3]
+    paths:
+      - 'apps/webhook-retry-lab/**'
+      - '.github/workflows/webhook-retry-lab-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: webhook-retry-lab-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  source-tests-and-build:
+    name: Original source tests, Worker build and reproducibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: apps/webhook-retry-lab
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: apps/webhook-retry-lab/package-lock.json
+      - name: Install pinned dependencies
+        run: npm ci
+      - name: Test original simulation and Worker API
+        run: npm test
+      - name: Prepare sanitized local build manifest
+        run: cp .openai/hosting.example.json .openai/hosting.json
+      - name: Rebuild original Worker and validate generated artifact
+        run: |
+          npm run build
+          node scripts/validate-artifact.mjs
+      - name: Confirm embedded Worker source is reproducible
+        run: git diff --exit-code -- worker/index.js
