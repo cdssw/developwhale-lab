@@ -61,7 +61,7 @@ wrangler d1 migrations apply "$DB_NAME" --remote --config ./wrangler.staging.gen
 wrangler deploy --config ./wrangler.staging.generated.json | tee /tmp/dw-staging-deploy.log
 
 # Resolve the reported worker.dev URL from the deployment output.
-URL="$(grep -Eo 'https://[A-Za-z0-9.-]+\\.workers\\.dev/?' /tmp/dw-staging-deploy.log | head -n 1 || true)"
+URL="$(grep -Eo 'https://[A-Za-z0-9.-]+\.workers\.dev/?' /tmp/dw-staging-deploy.log | head -n 1 || true)"
 if [[ -z "$URL" ]]; then
   echo "::warning::Deployed, but URL not detected in output. Verify the staging URL in Cloudflare dashboard."
   exit 1
