@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
-const base = 'https://dw-webhook-retry-lab-staging.cdssw.workers.dev';
+const base = process.env.LAB_QA_BASE_URL || 'https://dw-webhook-retry-lab-staging.cdssw.workers.dev';
 const browser = await chromium.launch({ headless: true });
 let checks = 0;
 const mark = (s) => { checks++; console.log('PASS:', s); };
@@ -21,9 +21,13 @@ try {
   page.on('pageerror', error => jsErrors.push(error.message));
   const response = await page.goto(base + '/?qa=1', { waitUntil: 'networkidle', timeout: 60000 });
   assert.equal(response?.status(), 200, 'staging homepage should be HTTP 200');
-  assert.match(response.headers()['x-robots-tag'] || '', /noindex/i);
+  if (process.env.LAB_EXPECT_NOINDEX === '0') {
+    assert.doesNotMatch(response.headers()['x-robots-tag'] || '', /noindex/i);
+  } else {
+    assert.match(response.headers()['x-robots-tag'] || '', /noindex/i);
+  }
   assert.match((await page.title()), /Webhook Retry/i);
-  mark('anonymous staging homepage, title and noindex');
+  mark('anonymous browser homepage, title and expected indexing mode');
 
   const baselineResp = await context.request.get(base + '/api/metrics');
   assert.equal(baselineResp.status(), 200);
