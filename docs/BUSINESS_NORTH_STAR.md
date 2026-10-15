@@ -6,6 +6,19 @@
 
 > **우리의 목표는 AI 직원이 사람의 반복 노동 없이 운영하며, 추가 승인 없는 지출 없이, 실제 검증된 월 순수익 100만 원을 창출하는 사업이다.**
 
+## HARD SCOPE — owner's explicit clarification (2026-10-15)
+
+**Only an independently self-running AI monetization business qualifies.** AI must be able to autonomously create/deliver the offer, obtain qualified visitors/users through a repeatable permitted automated discovery channel, monetize via automatic platform sale/ads/licensing or subscription, and operate/support it without routine owner service labor. The success metric is **verified net cash**, not automated production.
+
+**Non-negotiable exclusions:**
+- **Never sell to, survey, message, or rely on customers, prospects, contracts, relationships, or resources of the owner's other existing businesses.** They are outside this project; exclude any cross-sell experiment.
+- **No** agency business, freelance work, client-specific AI automations, custom consulting, done-for-you services, manual 1:1 prospecting, custom spreadsheet jobs or anything that requires customer-by-customer scope, calls, revision or delivery labor.
+- **No** candidate that needs recurring owner audience-building, manual marketing, outreach, support or moderation to sustain orders.
+- **No** repeated speculative account applications, website/app launches, artifacts, SEO posts, or product registrations *in place of* a validated automatic user-discovery and payout mechanism.
+- An initial owner identity/payment setup or exceptional compliance/dispute approval is acceptable **only if necessary**, but never present it as the business model or as verified self-running demand. Do not ask the owner to sign up before the revenue/distribution case passes scrutiny.
+
+**Reject early:** If automated acquisition is not materially demonstrated or the recurring sale/delivery/support loop needs hands-on labor, return **NO-GO**, even when technically easy or a marketplace shows past sales. Do not pivot to service sales as a workaround. Distinguish fully automated **operation capability** from unproven **paid demand / platform referrals**; neither alone proves passive cash income.
+
 ## Priority order (do not reverse)
 
 1. **Real collectable revenue path:** who pays, for what, under which verified ads/affiliate/customer terms? Revenue is observed from actual provider/settlement/payment data, not an assumption, site deployment, impressions, or fictional metrics.
