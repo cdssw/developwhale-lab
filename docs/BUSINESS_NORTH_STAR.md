@@ -19,6 +19,19 @@
 
 **Reject early:** If automated acquisition is not materially demonstrated or the recurring sale/delivery/support loop needs hands-on labor, return **NO-GO**, even when technically easy or a marketplace shows past sales. Do not pivot to service sales as a workaround. Distinguish fully automated **operation capability** from unproven **paid demand / platform referrals**; neither alone proves passive cash income.
 
+## CUSTOMER-ADEQUATE MARKET — humans, agents, software (owner clarification 2026-10-15)
+
+**Customers are NOT restricted to humans.** A real paying customer may be an individual, organization, software service, automated workflow, AI agent, or other legitimate computational buyer. Consider both human-to-AI and AI-to-AI commerce, including permitted authenticated API calls and machine payments, without assuming those emerging channels already carry meaningful demand.
+
+**Evaluate opportunities with the same revenue discipline regardless of customer type:**
+1. **Who or what autonomously encounters our offer?** Identify a demonstrable, allowed discovery/routing mechanism (marketplace, protocol discovery, agent tool registry, verified channel), not just a deployed API endpoint.
+2. **What repetitive, consequential problem is solved?** Prefer objectively checkable results or financially relevant time/cost savings rather than novelty or raw AI output.
+3. **How is a real payment made, authorized, and settled?** Verify platform/protocol terms, fees, wallet/payment custody, KYC, refunds, misuse/spam controls; bot-to-bot synthetic/test calls are **not revenue**.
+4. **Does AI run the complete delivery and maintenance loop with near-zero recurring human work?** Account for exceptional support, cost, false positives, source reliability, policy risk, and outages.
+5. **Can observed volumes and unit net contribution plausibly reach KRW 1,000,000 net monthly?** Show actual paid requests/settlement; no projections from registrations, listings, MAU, test calls, aggregate platform earnings or self-reported bot traffic alone.
+
+**Product discovery principle:** Be open to unconventional markets and machine-native buyers but reject unsubstantiated AI hype. Find the repeated costly friction first, buyer and acquisition next, real collection route next, and build last. This applies equally to humans and agents.
+
 ## Priority order (do not reverse)
 
 1. **Real collectable revenue path:** who pays, for what, under which verified ads/affiliate/customer terms? Revenue is observed from actual provider/settlement/payment data, not an assumption, site deployment, impressions, or fictional metrics.
