@@ -2,6 +2,14 @@
 
 Independent, low-cost developer tools and practical reliability experiments from [DevelopWhale](https://www.developwhale.com/).
 
+## AI Content Operator case study
+
+DevelopWhale is also testing an AI operator that can research, capture visuals, publish through n8n + WordPress, perform public QA, and adapt from operating data.
+
+**[Read the engineering summary](docs/AI_CONTENT_OPERATOR_CASE_STUDY.md)** · **[Full case study](https://www.developwhale.com/ai-content-operator-n8n-wordpress-case-study/?utm_source=github&utm_medium=referral&utm_campaign=ai_operator_case_study)**
+
+The important finding so far: production automation worked much better than distribution. The project is now measuring referral traffic and useful engagement rather than rewarding publishing volume.
+
 ## Webhook Retry Lab — free interactive simulator
 
 **[Open Webhook Retry Lab](https://dw-webhook-retry-lab-public.cdssw.workers.dev/)**
